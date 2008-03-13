@@ -20,11 +20,10 @@ Foundation, 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 typedef struct {
 	int value;
 	double angle;
-	double length, base_width, tip_width;
 	double r, g, b;
+	void * path;
 } Hand;
 
 int move_hands(Hand *, Hand *, Hand *);
-void init_hands(Hand *, Hand *, Hand *, int);
 
 #endif

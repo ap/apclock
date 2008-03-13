@@ -44,27 +44,3 @@ int move_hands(Hand * hours, Hand * mins, Hand * secs)
 
 	return 1;
 }
-
-
-void init_hands(Hand * hours, Hand * mins, Hand * secs, int size)
-{
-	double scale = size/64.0;
-
-	hours->value      = -1;
-	hours->base_width = scale * 5.5;
-	hours->tip_width  = scale * 2;
-	hours->length     = scale * 14;
-	hours->r = hours->g = hours->b = 2.0/3.0;
-
-	mins->value      = -1;
-	mins->base_width = scale * 4.5;
-	mins->tip_width  = scale * 1.5;
-	mins->length     = scale * 20;
-	mins->r = mins->g = mins->b = 4.0/7.0;
-
-	secs->value       = -1;
-	secs->base_width = scale * 2;
-	secs->tip_width  = scale * 1.25;
-	secs->length     = scale * 24.5;
-	secs->r = secs->g = secs->b = 1.0;
-}

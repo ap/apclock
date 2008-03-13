@@ -18,6 +18,7 @@ Foundation, 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #include <X11/Xlib.h>
 #include <cairo.h>
 #include <cairo-xlib.h>
+#include <math.h>
 #include "hand.h"
 
 cairo_status_t read_memory_buffer(void * srcptr, unsigned char * data, unsigned int length)
@@ -37,14 +38,46 @@ void render_hand(cairo_t * cr, Hand h)
 	cairo_save(cr);
 	cairo_translate(cr, sw/2, sh/2);
 	cairo_rotate(cr, h.angle);
-	cairo_move_to(cr, -h.tip_width/2.0, -h.length);
-	cairo_line_to(cr,  h.tip_width/2.0, -h.length);
-	cairo_line_to(cr,  h.base_width/2.0, h.base_width/2.0);
-	cairo_line_to(cr, -h.base_width/2.0, h.base_width/2.0);
-	cairo_close_path(cr);
+	cairo_append_path(cr, h.path);
 	cairo_set_source_rgb(cr, h.r, h.g, h.b);
 	cairo_fill(cr);
+	cairo_new_path(cr);
 	cairo_restore(cr);
+}
+
+
+cairo_path_t * create_rect_hand_path(cairo_t * cr, double scale, double length, double base_width, double tip_width, double offset)
+{
+	cairo_path_t * path;
+
+	cairo_save(cr);
+	cairo_new_path(cr);
+	cairo_move_to(cr, scale * -tip_width/2.0,  scale * (-length + offset) );
+	cairo_line_to(cr, scale *  tip_width/2.0,  scale * (-length + offset) );
+	cairo_line_to(cr, scale *  base_width/2.0, scale * offset);
+	cairo_line_to(cr, scale * -base_width/2.0, scale * offset);
+	cairo_close_path(cr);
+	path = cairo_copy_path(cr);
+	cairo_new_path(cr);
+	cairo_restore(cr);
+
+	return path;
+}
+
+
+cairo_path_t * create_disc_hand_path(cairo_t * cr, double scale, double offset, double radius)
+{
+	cairo_path_t * path;
+
+	cairo_save(cr);
+	cairo_new_path(cr);
+	cairo_arc(cr, 0, scale * -offset, scale * radius, 0, 2*M_PI);
+	cairo_close_path(cr);
+	path = cairo_copy_path(cr);
+	cairo_new_path(cr);
+	cairo_restore(cr);
+
+	return path;
 }
 
 

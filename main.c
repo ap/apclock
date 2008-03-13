@@ -30,6 +30,40 @@ Foundation, 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #define NAME "apclock"
 #define CLASS "APClock"
 
+
+void init_hands(Hand * hours, Hand * mins, Hand * secs, int size, cairo_t * cr)
+{
+	double scale = size/64.0;
+
+	{
+		double length     = 14;
+		double base_width =  5.5;
+		double tip_width  =  2;
+		hours->value = -1;
+		hours->r = hours->g = hours->b = 2.0/3.0;
+		hours->path = create_rect_hand_path(cr, scale, length + base_width/2.0, base_width, tip_width, base_width/2.0);
+	}
+
+	{
+		double length     = 20;
+		double base_width =  4.5;
+		double tip_width  =  1.5;
+		mins->value = -1;
+		mins->r = mins->g = mins->b = 4.0/7.0;
+		mins->path = create_rect_hand_path(cr, scale, length + base_width/2.0, base_width, tip_width, base_width/2.0);
+	}
+
+	{
+		double length     = 24.5;
+		double base_width =  2;
+		double tip_width  =  1.25;
+		secs->value = -1;
+		secs->r = secs->g = secs->b = 1.0;
+		secs->path = create_rect_hand_path(cr, scale, length + base_width/2.0, base_width, tip_width, base_width/2.0);
+	}
+}
+
+
 int main(int argc, char *argv[])
 {
 	int opt_under_windowmaker = True;
@@ -89,7 +123,7 @@ int main(int argc, char *argv[])
 
 				{
 					Hand hours, mins, secs;
-					init_hands(&hours, &mins, &secs, sw > sh ? sw : sh);
+					init_hands(&hours, &mins, &secs, sw > sh ? sw : sh, buffer_cr);
 
 					while (1) {
 						XEvent e;

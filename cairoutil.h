@@ -19,6 +19,8 @@ Foundation, 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
 cairo_status_t read_memory_buffer(void *, unsigned char *, unsigned int);
 void render_hand(cairo_t *, Hand);
+cairo_path_t * create_rect_hand_path(cairo_t *, double, double, double, double, double);
+cairo_path_t * create_disc_hand_path(cairo_t *, double, double, double);
 void clear_with_surface(cairo_t *, cairo_surface_t *);
 void bitmap_from_alpha(cairo_t *, cairo_surface_t *);
 

@@ -1,0 +1,15 @@
+PROJNAME = Antialiased pclock
+AUTHOR = Aristotle Pagaltzis
+EXENAME = apclock
+VERSION = 0.1
+HOMEPAGE = http://plasmasturm.org/programs/apclock/
+
+SUMMARY = An analog clock dockapp
+DESCRIPTION = \
+This dockapp shows antialiased hands against a pane with minimal markings:\
+it consists of a mirrored gauge pattern which is visually sparse yet very\
+easy to casually read off.
+
+PREFIX = /usr/X11R6
+BINDIR = $(PREFIX)/bin
+MANDIR = $(PREFIX)/man

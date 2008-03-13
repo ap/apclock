@@ -1,0 +1,6 @@
+Makefile.depend
+apclock*
+*.o
+*.png
+*.png*
+TODO

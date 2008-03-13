@@ -37,29 +37,30 @@ void init_hands(Hand * hours, Hand * mins, Hand * secs, int size, cairo_t * cr)
 
 	{
 		double length     = 14;
-		double base_width =  5.5;
-		double tip_width  =  2;
+		double base_width =  5;
+		double tip_width  =  1.5;
 		hours->value = -1;
-		hours->r = hours->g = hours->b = 2.0/3.0;
+		hours->r = hours->g = hours->b = 4.0/5.0;
 		hours->path = create_rect_hand_path(cr, scale, length + base_width/2.0, base_width, tip_width, base_width/2.0);
 	}
 
 	{
 		double length     = 20;
-		double base_width =  4.5;
-		double tip_width  =  1.5;
+		double base_width =  3.5;
+		double tip_width  =  1.75;
 		mins->value = -1;
-		mins->r = mins->g = mins->b = 4.0/7.0;
+		mins->r = mins->g = mins->b = 5.0/9.0;
 		mins->path = create_rect_hand_path(cr, scale, length + base_width/2.0, base_width, tip_width, base_width/2.0);
 	}
 
 	{
-		double length     = 24.5;
-		double base_width =  2;
-		double tip_width  =  1.25;
+		double length     =   5;
+		double base_width =   0;
+		double tip_width  =   6;
+		double offset     = -21;
 		secs->value = -1;
-		secs->r = secs->g = secs->b = 1.0;
-		secs->path = create_rect_hand_path(cr, scale, length + base_width/2.0, base_width, tip_width, base_width/2.0);
+		secs->r = secs->g = secs->b = 8.0/9.0;
+		secs->path = create_rect_hand_path(cr, scale, length, base_width, tip_width, offset);
 	}
 }
 
